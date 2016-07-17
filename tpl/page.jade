@@ -1,0 +1,61 @@
+- var buildings = ["Blackett","Huxley"];
+- var huxley = ["130","140","144","145","311","340","341"];
+- var blackett = ["LT1","LT2","LT3"];
+doctype
+html
+	head
+		title= "Real time web chat"
+		script(src='/jquery.js')
+		script(src='/chat.js')
+		script(src='http://localhost:3700/socket.io/socket.io.js')
+		script(src='zepto.min.js')
+		script(src='jqt.js')
+		script(src='initialise.js')
+		script(src='roomtrack.js')
+		link(href='jqtouch.css', rel='stylesheet')
+	body
+		#jqt
+			#about.selectable
+				p 
+					img(src= "jqtouch.png")
+				p <strong>jQTouch</strong><br>Version 1.0 beta<br>
+				p <br><br><a href="#" class="grayButton goback">Close</a></p>
+
+			#home.current
+				.toolbar
+					|<h1>RoomTracker</h1>
+					|<a class="button slideup" id="infoButton" href="#about">About</a>
+				.scroll
+					ul.rounded
+						each val in buildings
+							li.arrow= Room
+								a(href='#' + val) #{val}
+					|<h2>External Links</h2>
+				.info
+					p Add this page to your home screen for a richer experience
+
+			#Huxley
+				.toolbar
+					|<h1>RoomTracker</h1>
+					a.back(href="#home") Home
+				.scroll
+					ul.rounded
+						each val in huxley
+							li.arrow= Room
+								a.roomtrack(href='#', roomname= val) Huxley #{val}
+					|<h2>External Links</h2>
+				.info
+					p Add this page to your home screen for a richer experience
+
+			#Blackett
+				.toolbar
+					|<h1>RoomTracker</h1>
+					a.back(href="#home") Home
+				.scroll
+					ul.rounded
+						each val in blackett
+							li.arrow= Room
+								a.roomtrack(href='#', roomname= val) Blackett #{val}
+					|<h2>External Links</h2>
+				.info
+					p Add this page to your home screen for a richer experience
