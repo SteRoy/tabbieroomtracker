@@ -10,6 +10,31 @@
             var socket = io();
             //socket.emit('roomout', 'Room 101');
 
+            socket.on('debateStart', function(data){
+                var room = $("[roomname='" + data + "']");
+                room.removeClass('noDebate');
+                room.addClass('in');
+                room.children('small').remove();
+                room.html(room.text()+'<small class=counter>Debating</small>');
+            })
+
+            socket.on('debateOut', function(data){
+                var room = $("[roomname='" + data + "']");
+                room.removeClass('in');
+                room.addClass('out');
+                room.children('small').remove();
+                room.html(room.text()+'<small class=counter>Out</small>');
+            })
+
+            socket.on('ballotGot', function(data){
+                var room = $("[roomname='" + data + "']");
+                room.removeClass('out');
+                room.addClass('ballotgot');
+                room.children('small').remove();
+                room.html(room.text()+'<small class=counter>Ballot</small>');
+            })
+            
+
             // Some sample Javascript functions:
             $(function(){
 
@@ -26,9 +51,18 @@
 
                 $(".roomtrack").on("tap", function(e){
                     e.preventDefault();
-                    $(this).after('<small class=counter>Out</small>');
-                    console.log($(this).attr('roomname'));
-                    socket.emit('roomout', $(this).attr('roomname'));
+                    if ( $( this ).hasClass( "out" ) ){
+                        socket.emit('ballotgot', $(this).attr('roomname'));
+                    }
+                    else if ( $( this ).hasClass( "in" ) ){
+                        socket.emit('roomout', $(this).attr('roomname'));
+                    }
+                    else if ($( this ).hasClass( "ballotgot" )){
+                        socket.emit('roomin', $(this).attr('roomname'));
+                    }
+                    else if ($(this).hasClass("noDebate")){
+                        socket.emit('debateStart', $(this).attr('roomname'))
+                    }
                 });
 
                 $('a[target="_blank"]').bind('click', function() {

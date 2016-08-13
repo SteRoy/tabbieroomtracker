@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     var messages = [];
-    var socket = io.connect('http://localhost:3700');
+    var socket = io.connect('http://localhost:3000');
     var field = document.getElementById("field");
     var sendButton = document.getElementById("send");
     var content = document.getElementById("content");
@@ -22,7 +22,7 @@ $(document).ready(function(){
     socket.on('roomin', function (data) {
         if(data.message) {
            
-            }
+            console.log(message);
             
         } else {
             console.log("There is a problem:", data);

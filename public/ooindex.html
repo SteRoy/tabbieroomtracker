@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Real time web chat</title>
+    <script src="jquery.js"></script>
+    <script src="chat.js"></script>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="zepto.min.js"></script>
+    <script src="jqt.js"></script>
+    <script src="initialise.js"></script>
+    <script src="roomtrack.js"></script>
+    <link href="/jqtouch.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="jqt">
+      <div id="about" class="selectable">
+        <p> <img src="jqtouch.png"></p>
+        <p><strong>jQTouch</strong><br>Version 1.0 beta<br></p>
+        <p><br><br><a href="#" class="grayButton goback">Close</a></p></p>
+      </div>
+      <div id="home" class="current">
+        <div class="toolbar">
+          <h1>RoomTracker</h1>
+          <a class="button slideup" id="infoButton" href="#about">About</a>
+        </div>
+        <div class="scroll">
+          <ul class="rounded">
+            <li class="arrow"><a href="#Blackett">Blackett</a></li>
+            <li class="arrow"><a href="#Huxley">Huxley</a></li>
+          </ul><h2>External Links</h2>
+        </div>
+        <div class="info">
+          <p>Add this page to your home screen for a richer experience</p>
+        </div>
+      </div>
+      <div id="Huxley">
+        <div class="toolbar"><h1>RoomTracker</h1><a href="#home" class="back">Home</a></div>
+        <div class="scroll">
+          <ul class="rounded">
+            <li class="arrow"><a href="#" roomname="130" class="roomtrack">Huxley 130</a></li>
+            <li class="arrow"><a href="#" roomname="140" class="roomtrack">Huxley 140</a></li>
+            <li class="arrow"><a href="#" roomname="144" class="roomtrack">Huxley 144</a></li>
+            <li class="arrow"><a href="#" roomname="145" class="roomtrack">Huxley 145</a></li>
+            <li class="arrow"><a href="#" roomname="311" class="roomtrack">Huxley 311</a></li>
+            <li class="arrow"><a href="#" roomname="340" class="roomtrack">Huxley 340</a></li>
+            <li class="arrow"><a href="#" roomname="341" class="roomtrack">Huxley 341</a></li>
+          </ul><h2>External Links</h2>
+        </div>
+        <div class="info">
+          <p>Add this page to your home screen for a richer experience</p>
+        </div>
+      </div>
+      <div id="Blackett">
+        <div class="toolbar"><h1>RoomTracker</h1><a href="#home" class="back">Home</a></div>
+        <div class="scroll">
+          <ul class="rounded">
+            <li class="arrow"><a href="#" roomname="LT1" class="roomtrack">Blackett LT1</a></li>
+            <li class="arrow"><a href="#" roomname="LT2" class="roomtrack">Blackett LT2</a></li>
+            <li class="arrow"><a href="#" roomname="LT3" class="roomtrack">Blackett LT3</a></li>
+          </ul><h2>External Links</h2>
+        </div>
+        <div class="info">
+          <p>Add this page to your home screen for a richer experience</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
