@@ -24,7 +24,7 @@ function setValue(value, holder) {
  }
 
 const app = express()
-  .set('view engine', 'jade')
+  .set('view engine', 'pug')
   .use(express.static('public'))
 
 const http = require('http').createServer(app);
