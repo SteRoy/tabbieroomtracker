@@ -1,0 +1,36 @@
+doctype
+html
+	head
+		title= "EUDC 2016 RoomTracker Admin"
+		script(src='/jquery.js')
+		script(src='/socket.io/socket.io.js')
+		script(src='zepto.min.js')
+		script(src='jqt.js')
+		script(src='initialise.js')
+		script(src='roomtrack.js')
+		link(href='jqtouch.css', rel='stylesheet')
+	body
+		#jqt
+			#about.selectable
+				p 
+					img(src= "jqtouch.png")
+				p <strong>jQTouch</strong><br>Version 1.0 beta<br>
+				p <br><br><a href="#" class="grayButton goback">Close</a></p>
+
+			#home.current
+				.toolbar
+					|<h1>RoomTracker</h1>
+					a.back(href="#home") Home
+				.scroll
+					ul.rounded
+						each val in pageData[0]
+								li.arrow= Room
+									a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
+										case val.status
+											when noDebate 
+											when 'in': small.counter Debating
+											when 'out': small.counter Out
+											when 'ballotgot': small.counter Ballot
+					|<h2>External Links</h2>
+				.info
+					p Admins only

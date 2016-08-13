@@ -33,6 +33,13 @@
                 room.children('small').remove();
                 room.html(room.text()+'<small class=counter>Ballot</small>');
             })
+
+            socket.on('blanket', function(data){
+                var room = $("[roomname='" + data + "']");
+                room.removeClass('out');
+                room.addClass('noDebate');
+                room.children('small').remove();
+            })
             
 
             // Some sample Javascript functions:
@@ -58,7 +65,7 @@
                         socket.emit('roomout', $(this).attr('roomname'));
                     }
                     else if ($( this ).hasClass( "ballotgot" )){
-                        socket.emit('roomin', $(this).attr('roomname'));
+                        socket.emit('blanket', $(this).attr('roomname'));
                     }
                     else if ($(this).hasClass("noDebate")){
                         socket.emit('debateStart', $(this).attr('roomname'))

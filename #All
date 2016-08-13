@@ -1,0 +1,17 @@
+#All
+				.toolbar
+					|<h1>RoomTracker</h1>
+					a.back(href="#home") Home
+				.scroll
+					ul.rounded
+						each val in pageData[0]
+								li.arrow= Room
+									a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
+										case val.status
+											when noDebate 
+											when 'in': small.counter Debating
+											when 'out': small.counter Out
+											when 'ballotgot': small.counter Ballot
+					|<h2>External Links</h2>
+				.info
+					p Admins only
