@@ -163,6 +163,8 @@ io.on('connection', (socket) => {
   socket.on('ballotgot', (message) => connection.query('UPDATE rooms SET status = "ballotgot" WHERE roomname = "' + message + '"'))
   socket.on('debateStart', (message) => io.emit('debateStart', message));
   socket.on('debateStart', (message) => connection.query('UPDATE rooms SET status = "in" WHERE roomname = "' + message + '"'))
+  socket.on('blanket', (message) => io.emit('blanket', message));
+  socket.on('blanket', (message) => connection.query('UPDATE rooms SET status = "noDebate" WHERE roomname = "' + message + '"'))
   socket.on('disconnect', () => console.log('Client disconnected'));
 });
 
