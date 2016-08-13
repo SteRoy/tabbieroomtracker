@@ -11,10 +11,10 @@ const PORT = process.env.PORT || 8080;
 var mysql      = require('mysql');
 
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'root',
-  database : 'roomtracker'
+  host     : 'gx97kbnhgjzh3efb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+  user     : 'ayug90pro8vdtmvw',
+  password : 'p105fcq1x7vj72ji',
+  database : 'g27yd9pew5qmcsuz'
 });
 
 connection.connect();
@@ -30,7 +30,7 @@ const app = express()
 const http = require('http').createServer(app);
 const io = socketIO(http);
 
-http.listen(8080);
+http.listen(PORT);
 
 	var blue12 = [];
 	var blue3 = [];
