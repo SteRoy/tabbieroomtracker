@@ -27,7 +27,7 @@ const app = express()
   .use(express.static(__dirname + '../public'))
   .set('view engine', 'pug')
 
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '../views');
 
 const http = require('http').createServer(app);
 const io = socketIO(http);
