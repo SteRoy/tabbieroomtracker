@@ -36,7 +36,7 @@
 
             socket.on('blanket', function(data){
                 var room = $("[roomname='" + data + "']");
-                room.removeClass('out');
+                room.removeClass('ballotgot');
                 room.addClass('noDebate');
                 room.children('small').remove();
             })
