@@ -42,6 +42,26 @@ http.listen(PORT);
 	var red11 = [];
 	var red2 = [];
 	var red3 = [];
+	var valdata = [];
+
+app.get('/admin', function(req, res){
+
+async.parallel([
+
+function(callback){
+connection.query('SELECT * from rooms', function(err, rows, fields) {
+  if (!err)
+    {valdata = rows;
+    	callback();}
+  else
+    console.log('Error while performing Query.');
+});
+}
+],
+function(){
+	res.render('admin', {port: PORT, pageData: [valdata]});
+});
+});
 
 
 app.get('/', function(req, res){
