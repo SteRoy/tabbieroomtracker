@@ -26,7 +26,7 @@ function setValue(value, holder) {
 const app = express()
   .set('view engine', 'pug')
   .use(express.static(__dirname + '../public'))
-  .use(express.static(__dirname + '../views'))
+  .use(express.static(__dirname + '/views'))
 
 const http = require('http').createServer(app);
 const io = socketIO(http);
