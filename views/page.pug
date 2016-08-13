@@ -1,4 +1,4 @@
-- var buildings = ["Blue1-2", "Blue3", "Orange0", "Orange1", "Orange2", "Red1/-1", "Red2", "Red3"];
+- var buildings = ["Blue1-2", "Blue3", "Orange0", "Orange1", "Orange2", "Red11", "Red2", "Red3"];
 doctype
 html
 	head
@@ -37,9 +37,8 @@ html
 					a.back(href="#home") Home
 				.scroll
 					ul.rounded
-						- console.log(pageData)
+						- console.log(pageData[6])
 						each val in pageData[0]
-							- console.log(val)
 							li.arrow= Room
 								a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
 									case val.status
@@ -57,9 +56,7 @@ html
 					a.back(href="#home") Home
 				.scroll
 					ul.rounded
-						- console.log(pageData)
 						each val in pageData[1]
-							- console.log(val)
 							li.arrow= Room
 								a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
 									case val.status
@@ -77,9 +74,7 @@ html
 					a.back(href="#home") Home
 				.scroll
 					ul.rounded
-						- console.log(pageData)
 						each val in pageData[2]
-							- console.log(val)
 							li.arrow= Room
 								a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
 									case val.status
@@ -97,9 +92,7 @@ html
 					a.back(href="#home") Home
 				.scroll
 					ul.rounded
-						- console.log(pageData)
 						each val in pageData[3]
-							- console.log(val)
 							li.arrow= Room
 								a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
 									case val.status
@@ -117,9 +110,7 @@ html
 					a.back(href="#home") Home
 				.scroll
 					ul.rounded
-						- console.log(pageData)
 						each val in pageData[4]
-							- console.log(val)
 							li.arrow= Room
 								a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
 									case val.status
@@ -131,7 +122,7 @@ html
 				.info
 					p Add this page to your home screen for a richer experience
 
-			#Red1/-1
+			#Red11
 				.toolbar
 					|<h1>RoomTracker</h1>
 					a.back(href="#home") Home
