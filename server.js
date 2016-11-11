@@ -34,14 +34,10 @@ const io = socketIO(http);
 
 http.listen(PORT);
 
-	var blue12 = [];
-	var blue3 = [];
-	var orange0 = [];
-	var orange1 = [];
-	var orange2 = [];
-	var red11 = [];
-	var red2 = [];
-	var red3 = [];
+	var union = [];
+	var cie = [];
+	var sgm = [];
+	var ec = [];
 	var valdata = [];
 
 app.get('/admin', function(req, res){
@@ -69,9 +65,9 @@ app.get('/', function(req, res){
 async.parallel([
 
 function(callback) {
-	connection.query('SELECT * from rooms WHERE rooms.group = "BLUE 1/2"', function(err, rows, fields) {
+	connection.query('SELECT * from rooms WHERE rooms.group = "Union"', function(err, rows, fields) {
   if (!err){
-  	blue12 = rows;
+  	union = rows;
     callback();
 	}
   else
@@ -80,9 +76,9 @@ function(callback) {
 },
 
 function(callback){
-	connection.query('SELECT * from rooms WHERE rooms.group = "BLUE 3"', function(err, rows, fields) {
+	connection.query('SELECT * from rooms WHERE rooms.group = "CIE"', function(err, rows, fields) {
   if (!err){
-    blue3 = rows;
+    cie = rows;
     callback();
 	}
   else
@@ -91,9 +87,9 @@ function(callback){
 },
 
 function(callback){
-connection.query('SELECT * from rooms WHERE rooms.group = "ORANGE 0"', function(err, rows, fields) {
+connection.query('SELECT * from rooms WHERE rooms.group = "EC"', function(err, rows, fields) {
   if (!err)
-    {orange0 = rows;
+    {ec = rows;
     	callback();}
   else
     console.log('Error while performing Query.');
@@ -101,57 +97,17 @@ connection.query('SELECT * from rooms WHERE rooms.group = "ORANGE 0"', function(
 },
 
 function(callback){
-connection.query('SELECT * from rooms WHERE rooms.group = "ORANGE 1"', function(err, rows, fields) {
+connection.query('SELECT * from rooms WHERE rooms.group = "SGM"', function(err, rows, fields) {
   if (!err)
-    {orange1 = rows;
+    {sgm = rows;
     	callback();}
   else
     console.log('Error while performing Query.');
 });
 },
-
-function(callback){
-connection.query('SELECT * from rooms WHERE rooms.group = "ORANGE 2"', function(err, rows, fields) {
-  if (!err)
-    {orange2 = rows;
-    	callback();}
-  else
-    console.log('Error while performing Query.');
-});
-},
-
-function(callback){
-connection.query('SELECT * from rooms WHERE rooms.group = "RED -1/1"', function(err, rows, fields) {
-  if (!err)
-    {red11 = rows;
-    	callback();}
-  else
-    console.log('Error while performing Query.');
-});
-},
-
-function(callback){
-connection.query('SELECT * from rooms WHERE rooms.group = "RED 2"', function(err, rows, fields) {
-  if (!err)
-  	{red2 = rows;
-  	    callback();}
-  else
-    console.log('Error while performing Query.');
-});
-},
-
-function(callback){
-connection.query('SELECT * from rooms WHERE rooms.group = "RED 3"', function(err, rows, fields) {
-  if (!err)
-    {red3 = rows;
-    	callback();}
-  else
-    console.log('Error while performing Query.');
-});
-}
 ],
 function(){
-	res.render('page', {port: PORT, pageData: [blue12, blue3, orange0, orange1, orange2, red11, red2, red3]});
+	res.render('page', {port: PORT, pageData: [cie, ec, sgm, union]});
 });
 });
 

@@ -1,4 +1,4 @@
-- var buildings = ["Blue1-2", "Blue3", "Orange0", "Orange1", "Orange2", "Red1/-1", "Red2", "Red3"];
+- var buildings = ["CIE", "EC", "SGM", "Union"];
 doctype
 html
 	head
@@ -31,7 +31,7 @@ html
 				.info
 					p Add this page to your home screen for a richer experience
 
-			#Blue1-2
+			#CIE
 				.toolbar
 					|<h1>RoomTracker</h1>
 					a.back(href="#home") Home
@@ -51,7 +51,7 @@ html
 				.info
 					p Add this page to your home screen for a richer experience
 
-			#Blue3
+			#EC
 				.toolbar
 					|<h1>RoomTracker</h1>
 					a.back(href="#home") Home
@@ -71,7 +71,7 @@ html
 				.info
 					p Add this page to your home screen for a richer experience
 
-			#Orange0
+			#SGM
 				.toolbar
 					|<h1>RoomTracker</h1>
 					a.back(href="#home") Home
@@ -91,7 +91,7 @@ html
 				.info
 					p Add this page to your home screen for a richer experience
 
-			#Orange1
+			#Union
 				.toolbar
 					|<h1>RoomTracker</h1>
 					a.back(href="#home") Home
@@ -100,80 +100,6 @@ html
 						- console.log(pageData)
 						each val in pageData[3]
 							- console.log(val)
-							li.arrow= Room
-								a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
-									case val.status
-										when noDebate 
-										when 'in': small.counter Debating
-										when 'out': small.counter Out
-										when 'ballotgot': small.counter Ballot
-					|<h2>External Links</h2>
-				.info
-					p Add this page to your home screen for a richer experience
-
-			#Orange2
-				.toolbar
-					|<h1>RoomTracker</h1>
-					a.back(href="#home") Home
-				.scroll
-					ul.rounded
-						- console.log(pageData)
-						each val in pageData[4]
-							- console.log(val)
-							li.arrow= Room
-								a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
-									case val.status
-										when noDebate 
-										when 'in': small.counter Debating
-										when 'out': small.counter Out
-										when 'ballotgot': small.counter Ballot
-					|<h2>External Links</h2>
-				.info
-					p Add this page to your home screen for a richer experience
-
-			#Red1/-1
-				.toolbar
-					|<h1>RoomTracker</h1>
-					a.back(href="#home") Home
-				.scroll
-					ul.rounded
-						each val in pageData[5]
-							li.arrow= Room
-								a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
-									case val.status
-										when noDebate 
-										when 'in': small.counter Debating
-										when 'out': small.counter Out
-										when 'ballotgot': small.counter Ballot
-					|<h2>External Links</h2>
-				.info
-					p Add this page to your home screen for a richer experience
-
-			#Red2
-				.toolbar
-					|<h1>RoomTracker</h1>
-					a.back(href="#home") Home
-				.scroll
-					ul.rounded
-						each val in pageData[6]
-							li.arrow= Room
-								a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
-									case val.status
-										when noDebate 
-										when 'in': small.counter Debating
-										when 'out': small.counter Out
-										when 'ballotgot': small.counter Ballot
-					|<h2>External Links</h2>
-				.info
-					p Add this page to your home screen for a richer experience
-
-			#Red3
-				.toolbar
-					|<h1>RoomTracker</h1>
-					a.back(href="#home") Home
-				.scroll
-					ul.rounded
-						each val in pageData[7]
 							li.arrow= Room
 								a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
 									case val.status
