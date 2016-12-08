@@ -1,4 +1,3 @@
-- var buildings = ["CIE", "EC", "SGM", "Union"];
 doctype
 html
 	head
@@ -24,82 +23,24 @@ html
 					|<a class="button slideup" id="infoButton" href="#about">About</a>
 				.scroll
 					ul.rounded
-						each val in buildings
+						each val in pageData[0]
 							li.arrow= Room
 								a(href='#' + val) #{val}
 					|<h2>External Links</h2>
 				.info
 					p Add this page to your home screen for a richer experience
-
-			#CIE
-				.toolbar
-					|<h1>RoomTracker</h1>
-					a.back(href="#home") Home
-				.scroll
-					ul.rounded
-						- console.log(pageData[6])
-						each val in pageData[0]
-							li.arrow= Room
-								a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
-									case val.status
-										when noDebate 
-										when 'in': small.counter Debating
-										when 'out': small.counter Out
-										when 'ballotgot': small.counter Ballot
-					|<h2>External Links</h2>
-				.info
-					p Add this page to your home screen for a richer experience
-
-			#EC
-				.toolbar
-					|<h1>RoomTracker</h1>
-					a.back(href="#home") Home
-				.scroll
-					ul.rounded
-						each val in pageData[1]
-							li.arrow= Room
-								a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
-									case val.status
-										when noDebate 
-										when 'in': small.counter Debating
-										when 'out': small.counter Out
-										when 'ballotgot': small.counter Ballot
-					|<h2>External Links</h2>
-				.info
-					p Add this page to your home screen for a richer experience
-
-			#SGM
-				.toolbar
-					|<h1>RoomTracker</h1>
-					a.back(href="#home") Home
-				.scroll
-					ul.rounded
-						each val in pageData[2]
-							li.arrow= Room
-								a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
-									case val.status
-										when noDebate 
-										when 'in': small.counter Debating
-										when 'out': small.counter Out
-										when 'ballotgot': small.counter Ballot
-					|<h2>External Links</h2>
-				.info
-					p Add this page to your home screen for a richer experience
-
-			#Union
-				.toolbar
-					|<h1>RoomTracker</h1>
-					a.back(href="#home") Home
-				.scroll
-					ul.rounded
-						each val in pageData[3]
-							li.arrow= Room
-								a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
-									case val.status
-										when noDebate 
-										when 'in': small.counter Debating
-										when 'out': small.counter Out
-										when 'ballotgot': small.counter Ballot
-					|<h2>External Links</h2>
-				.info
-					p Add this page to your home screen for a richer experience
+			each val, index in pageData[0]
+				div(id=val)
+					.toolbar
+						|<h1>RoomTracker</h1>
+						a.back(href="#home") Home
+					.scroll
+						ul.rounded
+							each val in pageData[1][index]
+								li.arrow= Room
+									a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
+										case val.status
+											when noDebate 
+											when 'in': small.counter Debating
+											when 'out': small.counter Out
+											when 'ballotgot': small.counter Ballot

@@ -10,6 +10,12 @@ const PORT = process.env.PORT || 8080;
 
 var mysql      = require('mysql');
 
+var allrooms;
+var allRoomsFormatted = [];
+var lastRoomGroup;
+var groupNames = [];
+var workingGroup = [];
+
 var connection = mysql.createConnection({
   host     : 'gx97kbnhgjzh3efb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
   user     : 'ayug90pro8vdtmvw',
@@ -19,9 +25,13 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-function setValue(value, holder) {
+/*function setValue(value, holder) {
   holder = value;
- }
+ }*/
+
+ function logArrayElements(element, index, array) {
+  console.log('a[' + index + '] = ' + JSON.stringify(element, null, 4));
+}
 
 const app = express()
   .use(express.static(__dirname + '/public'))
@@ -65,9 +75,9 @@ app.get('/', function(req, res){
 async.parallel([
 
 function(callback) {
-	connection.query('SELECT * from rooms WHERE rooms.group = "Union"', function(err, rows, fields) {
+	connection.query('SELECT * from rooms ORDER BY `group`, id', function(err, rows, fields) {
   if (!err){
-  	union = rows;
+  	allrooms = rows;
     callback();
 	}
   else
@@ -75,39 +85,29 @@ function(callback) {
 });
 },
 
-function(callback){
-	connection.query('SELECT * from rooms WHERE rooms.group = "CIE"', function(err, rows, fields) {
-  if (!err){
-    cie = rows;
-    callback();
-	}
-  else
-    console.log('Error while performing Query.');
-});
-},
-
-function(callback){
-connection.query('SELECT * from rooms WHERE rooms.group = "EC"', function(err, rows, fields) {
-  if (!err)
-    {ec = rows;
-    	callback();}
-  else
-    console.log('Error while performing Query.');
-});
-},
-
-function(callback){
-connection.query('SELECT * from rooms WHERE rooms.group = "SGM"', function(err, rows, fields) {
-  if (!err)
-    {sgm = rows;
-    	callback();}
-  else
-    console.log('Error while performing Query.');
-});
-},
 ],
 function(){
-	res.render('page', {port: PORT, pageData: [cie, ec, sgm, union]});
+  allrooms.forEach(
+    function(entry){
+      if(groupNames.indexOf(entry.group) === -1){
+        groupNames.push(entry.group);
+      }
+      if(entry.group === lastRoomGroup || lastRoomGroup === undefined){
+        workingGroup.push(entry);
+        lastRoomGroup = entry.group;
+      }
+      else{
+        allRoomsFormatted.push(workingGroup);
+        workingGroup = [];
+        workingGroup.push(entry);
+        lastRoomGroup = entry.group;
+      }
+      }
+    );
+  allRoomsFormatted.push(workingGroup);
+  console.log(groupNames);
+  console.log(allRoomsFormatted);
+	res.render('page', {port: PORT, pageData: [groupNames, allRoomsFormatted]});
 });
 });
 
