@@ -10,12 +10,6 @@ const PORT = process.env.PORT || 8080;
 
 var mysql      = require('mysql');
 
-var allrooms;
-var allRoomsFormatted = [];
-var lastRoomGroup;
-var groupNames = [];
-var workingGroup = [];
-
 var connection = mysql.createConnection({
   host     : 'gx97kbnhgjzh3efb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
   user     : 'ayug90pro8vdtmvw',
@@ -71,6 +65,12 @@ function(){
 
 
 app.get('/', function(req, res){
+
+var allrooms;
+var allRoomsFormatted = [];
+var lastRoomGroup;
+var groupNames = [];
+var workingGroup = [];
 
 async.parallel([
 
