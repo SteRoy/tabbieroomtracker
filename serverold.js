@@ -6,32 +6,45 @@ const path = require('path');
 const async = require('async');
 
 const PORT = process.env.PORT || 8080;
+//const INDEX = path.join(__dirname, 'index.html');
 
 var mysql      = require('mysql');
 
-var connection = require('./mysqlconnection')
+var connection = mysql.createConnection({
+  host     : 'gx97kbnhgjzh3efb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+  user     : 'ayug90pro8vdtmvw',
+  password : 'p105fcq1x7vj72ji',
+  database : 'g27yd9pew5qmcsuz'
+});
 
 connection.connect();
 
+/*function setValue(value, holder) {
+  holder = value;
+ }*/
+
 const app = express()
   .use(express.static(__dirname + '/public'))
-  .set('view engine', 'pug');
+  .set('view engine', 'pug')
 
 app.set('views', __dirname + '/views');
-
-app.locals.moment = require('moment');
 
 const http = require('http').createServer(app);
 const io = socketIO(http);
 
 http.listen(PORT);
 
+	var union = [];
+	var cie = [];
+	var sgm = [];
+	var ec = [];
+	var valdata = [];
+
 app.get('/admin', function(req, res){
 
 async.parallel([
 
 function(callback){
-var valdata = [];
 connection.query('SELECT * from rooms', function(err, rows, fields) {
   if (!err)
     {valdata = rows;
@@ -49,17 +62,12 @@ function(){
 
 app.get('/', function(req, res){
 
-var allrooms, lastRoomGroup;
-var allRoomsFormatted = [];
-var groupNames = [];
-var workingGroup = [];
-
 async.parallel([
 
 function(callback) {
-	connection.query('SELECT * from rooms ORDER BY `group`, id', function(err, rows, fields) {
+	connection.query('SELECT * from rooms WHERE rooms.group = "Union"', function(err, rows, fields) {
   if (!err){
-  	allrooms = rows;
+  	union = rows;
     callback();
 	}
   else
@@ -67,24 +75,39 @@ function(callback) {
 });
 },
 
+function(callback){
+	connection.query('SELECT * from rooms WHERE rooms.group = "CIE"', function(err, rows, fields) {
+  if (!err){
+    cie = rows;
+    callback();
+	}
+  else
+    console.log('Error while performing Query.');
+});
+},
+
+function(callback){
+connection.query('SELECT * from rooms WHERE rooms.group = "EC"', function(err, rows, fields) {
+  if (!err)
+    {ec = rows;
+    	callback();}
+  else
+    console.log('Error while performing Query.');
+});
+},
+
+function(callback){
+connection.query('SELECT * from rooms WHERE rooms.group = "SGM"', function(err, rows, fields) {
+  if (!err)
+    {sgm = rows;
+    	callback();}
+  else
+    console.log('Error while performing Query.');
+});
+},
 ],
 function(){
-  allrooms.forEach(
-    function(entry){
-      if(groupNames.indexOf(entry.group) === -1){
-        groupNames.push(entry.group);
-      }
-      if(entry.group !== lastRoomGroup && lastRoomGroup !== undefined){
-        allRoomsFormatted.push(workingGroup);
-        workingGroup = [];
-      }
-        workingGroup.push(entry);
-        lastRoomGroup = entry.group;
-      }
-    );
-  allRoomsFormatted.push(workingGroup);
-  console.log(allRoomsFormatted);
-	res.render('page', {port: PORT, pageData: [groupNames, allRoomsFormatted]});
+	res.render('page', {port: PORT, pageData: [cie, ec, sgm, union]});
 });
 });
 
@@ -100,3 +123,5 @@ io.on('connection', (socket) => {
   socket.on('blanket', (message) => connection.query('UPDATE rooms SET status = "noDebate" WHERE roomname = "' + message + '"'))
   socket.on('disconnect', () => console.log('Client disconnected'));
 });
+
+//setInterval(() => io.emit('time', new Date().toTimeString()), 1000);

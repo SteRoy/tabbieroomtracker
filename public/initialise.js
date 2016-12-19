@@ -23,7 +23,7 @@
                 room.removeClass('in');
                 room.addClass('out');
                 room.children('small').remove();
-                room.html(room.text()+'<small class=counter>Out</small>');
+                room.html(room.text()+'<small class=counter>Out</small><small class=counter id=timeid>00:00</small>');
             })
 
             socket.on('ballotGot', function(data){

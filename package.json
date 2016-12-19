@@ -17,6 +17,7 @@
     "jade": "^1.11.0",
     "mysql": "^2.5.4",
     "pug": "latest",
-    "socket.io": "1.4.6"
+    "socket.io": "1.4.6",
+    "moment": "latest"
   }
 }

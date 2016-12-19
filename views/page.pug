@@ -8,6 +8,7 @@ html
 		script(src='jqt.js')
 		script(src='initialise.js')
 		script(src='roomtrack.js')
+		script(src='ticker.js')
 		link(href='jqtouch.css', rel='stylesheet')
 	body
 		#jqt
@@ -37,10 +38,14 @@ html
 					.scroll
 						ul.rounded
 							each val in pageData[1][index]
+								- var time = new Date(val.date)
+								- var timeNow = new Date()
+								- var timeElapsed = timeNow.getTime() - time.getTime()
 								li.arrow= Room
 									a(class="roomtrack " + val.status)(href='#', roomname= val.roomname) #{val.roomname}
 										case val.status
-											when noDebate 
 											when 'in': small.counter Debating
 											when 'out': small.counter Out
 											when 'ballotgot': small.counter Ballot
+										case val.status
+											when 'out': small.counter#timeid #{moment(timeElapsed).format('mm:ss')}
