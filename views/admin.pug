@@ -8,6 +8,7 @@ html
 		script(src='jqt.js')
 		script(src='initialise.js')
 		script(src='roomtrack.js')
+		script(src='ticker.js')
 		link(href='jqtouch.css', rel='stylesheet')
 	body
 		#jqt
@@ -31,6 +32,8 @@ html
 											when 'in': small.counter Debating
 											when 'out': small.counter Out
 											when 'ballotgot': small.counter Ballot
+										case val.status
+											when 'out': small.counter#timeid #{moment(timeElapsed).format('mm:ss')}
 					|<h2>External Links</h2>
 				.info
 					p Admins only
