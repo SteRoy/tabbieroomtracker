@@ -28,21 +28,24 @@ http.listen(PORT);
 
 app.get('/admin', function(req, res){
 
-async.parallel([
+var allrooms;
 
+async.parallel([
 function(callback){
-var valdata = [];
 connection.query('SELECT * from rooms', function(err, rows, fields) {
-  if (!err)
-    {valdata = rows;
-    	callback();}
+  if (!err){
+    console.log(rows);
+      allrooms = rows;
+    	callback();
+    }
   else
     console.log('Error while performing Query.');
 });
-}
+},
 ],
-function(){
-	res.render('admin', {port: PORT, pageData: [valdata]});
+
+function(callback){
+  res.render('admin', {port: PORT, pageData: [allrooms]});
 });
 });
 
