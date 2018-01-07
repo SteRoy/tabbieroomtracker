@@ -1,7 +1,7 @@
 doctype
 html
 	head
-		title= "Oxford 2016 RoomTracker"
+		title= "RoomTracker"
 		script(src='/jquery.js')
 		script(src='/socket.io/socket.io.js')
 		script(src='zepto.min.js')
@@ -15,7 +15,11 @@ html
 			#about.selectable
 				p 
 					img(src= "jqtouch.png")
+				p <strong>Tabbie Room Tracker</strong><br>Built on<br>
 				p <strong>jQTouch</strong><br>Version 1.0 beta<br>
+				em Built by Richard Coates<br>
+				a(target="_blank" href="http://github.com/rscoates/tabbieroomtracker") Github Repository<br>
+				a(target="_blank" href="http://twitter.com/wudc2017tab") @WUDC2017Tab on Twitter
 				p <br><br><a href="#" class="grayButton goback">Close</a></p>
 
 			#home.current
@@ -27,7 +31,6 @@ html
 						each val in pageData[0]
 							li.arrow= Room
 								a(href='#' + val) #{val}
-					|<h2>External Links</h2>
 				.info
 					p Add this page to your home screen for a richer experience
 			each val, index in pageData[0]

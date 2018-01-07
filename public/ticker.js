@@ -10,8 +10,8 @@ $(document).ready(function(){
                         var newSeconds = oldSeconds + 1;
                         var newMinutes = Math.floor(newSeconds/60);
                         newSeconds = newSeconds % 60;
-                        if(newSeconds < 10) newSeconds = '0' + newSeconds
-                        if(newMinutes < 10) newMinutes = '0' + newMinutes
+                        if(newSeconds < 10) newSeconds = '0' + newSeconds;
+                        if(newMinutes < 10) newMinutes = '0' + newMinutes;
                         var newTime = newMinutes + ":" + newSeconds;
                         $(this).text(newTime);
                     });

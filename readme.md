@@ -1,7 +1,9 @@
-# Node.js Socket.io Example
+# Tabbie Room Tracker
+This allows Tournament Directors and Tab teams to track rooms.
 
-This example accompanies the
-[Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
-tutorial.
+This file still needs to be updated!
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+TODO:
+- Move to a Promise-based MySQL ORM (probably Sequelize)
+- Allow for different time limits
+- Sync with Tabbie
